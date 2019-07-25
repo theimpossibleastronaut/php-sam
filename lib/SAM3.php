@@ -38,7 +38,7 @@ class SAM3
 
 	public function getSignatureType():String
 	{
-		return $this->signatureType;
+		return Signatures::getSignatureType( $this->signatureType );
 	}
 
 	public function connect():Void {

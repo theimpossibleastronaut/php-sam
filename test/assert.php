@@ -21,4 +21,4 @@ require_once( dirname( __FILE__ ) . "/../lib/php-sam.php" );
 $sam = new \PHP_SAM\SAM3();
 
 assert( $sam->getSAMAddress() === "127.0.0.1:7656" );
-assert( $sam->getSignatureType() === \PHP_SAM\Signatures::EdDSA_SHA512_Ed25519 );
+assert( $sam->getSignatureType() === \PHP_SAM\Signatures::getSignatureType( \PHP_SAM\Signatures::EdDSA_SHA512_Ed25519 ) );

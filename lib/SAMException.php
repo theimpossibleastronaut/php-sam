@@ -8,4 +8,5 @@ class SAMException extends \Exception
 	const SOCKET_CREATE_ERROR = "Error creating socket";
 	const SOCKET_CONNECT_ERROR = "Error connecting socket";
 	const SOCKET_WRITE_ERROR = "Error writing to the socket";
+	const UNKNOWN_REPLY = "Unknown reply in SAM package";
 }
