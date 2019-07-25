@@ -27,3 +27,6 @@ $sam->connect();
 $reply = $sam->commandSAM( "HELLO VERSION MIN=3.0 MAX=3.1 \n" );
 
 assert( $reply->getResult() === \PHP_SAM\SAMReply::REPLY_TYPE_OK );
+
+$session = $sam->createSession( "test" );
+assert( $session === "test" );

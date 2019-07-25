@@ -41,7 +41,7 @@ class SAM3
 		return Signatures::getSignatureType( $this->signatureType );
 	}
 
-	public function connect():Void {
+	public function connect( bool $sendHello = true ):Void {
 		if ( isset( $this->samSocket ) && !is_null( $this->samSocket ) ) {
 			throw new SAMException( SAMException::ALREADY_CONNECTED );
 		}
@@ -57,6 +57,21 @@ class SAM3
 		if ( $result === false ) {
 			throw new SAMException( SAMException::SOCKET_CONNECT_ERROR );
 		}
+
+		if ( $sendHello === true ) {
+			$this->sendHello();
+		}
+	}
+
+	public function sendHello():SAMReply
+	{
+		$reply = $this->commandSAM( "HELLO VERSION MIN=3.0 MAX=3.1 \n" );
+
+		if ( $reply->getResult() !== \PHP_SAM\SAMReply::REPLY_TYPE_OK ) {
+			throw new SAMException( SAMException::HELLO_FAILED );
+		}
+
+		return $reply;
 	}
 
 	public function commandSAM( $args ):SAMReply
@@ -84,5 +99,29 @@ class SAM3
 		}
 
 		return new SAMReply( $message );
+	}
+
+	public function createSession( String $id, String $destination = null ):String
+	{
+		if ( empty( $destination ) ) {
+			$destination = "TRANSIENT";
+		}
+
+		$reply = $this->commandSAM( "SESSION CREATE STYLE=STREAM ID=" . $id . " DESTINATION=" . $destination . " \n" );
+		if ( $reply->getResult() === \PHP_SAM\SAMReply::REPLY_TYPE_OK ) {
+			return $id;
+		}
+
+		return "";
+	}
+
+	public function lookupName( String $name ):String
+	{
+		$reply = $this->commandSAM( "NAMING LOOKUP NAME=" . $name . "\n" );
+		if ( $reply->getResult() === \PHP_SAM\SAMReply::REPLY_TYPE_OK ) {
+			return $reply->getReplyMapValue( "VALUE" );
+		}
+
+		return "";
 	}
 }

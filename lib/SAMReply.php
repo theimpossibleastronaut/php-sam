@@ -31,12 +31,12 @@ class SAMReply
 
 		$parts = explode( " ", $this->message );
 
-		$this->topic = $parts[ 0 ];
-		$this->type = $parts[ 1 ];
-
 		if ( count( $parts ) < 2 ) {
 			return;
 		}
+
+		$this->topic = $parts[ 0 ];
+		$this->type = $parts[ 1 ];
 
 		for ( $i = 2; $i < count( $parts ); $i++ ) {
 			$dparts = explode( "=", $parts[ $i ] );
@@ -47,7 +47,7 @@ class SAMReply
 	}
 
 	public function getResult():String {
-		return $this->replyMap[ "RESULT" ] ?: self::REPLY_TYPE_UNKNOWN;
+		return $this->getReplyMapValue( "RESULT" );
 	}
 
 	public function getReplyMapValue( String $param ):String
