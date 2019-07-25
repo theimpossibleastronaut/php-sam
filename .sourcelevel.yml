@@ -1,0 +1,16 @@
+styleguide: sourcelevel/linters
+engines:
+  phan:
+    enabled: true
+  fixme:
+    enabled: true
+  phpmd:
+    enabled: true
+  remark-lint:
+    enabled: true
+  fixme:
+    enabled: true
+  duplication:
+    enabled: true
+
+
