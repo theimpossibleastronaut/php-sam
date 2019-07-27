@@ -8,6 +8,7 @@ class SAM3
 	public $signatureType = Signatures::EdDSA_SHA512_Ed25519;
 
 	protected $samSocket = null;
+	protected $sentHello = false;
 
 	function __construct( string $samHost = null, int $samPort = null, string $signatureType = null )
 	{
@@ -65,11 +66,17 @@ class SAM3
 
 	public function sendHello():SAMReply
 	{
+		if ( $this->sentHello === true ) {
+			throw new SAMException( SAMException::HELLO_ALREADY_SENT );
+		}
+
 		$reply = $this->commandSAM( "HELLO VERSION MIN=3.0 MAX=3.1 \n" );
 
 		if ( $reply->getResult() !== \PHP_SAM\SAMReply::REPLY_TYPE_OK ) {
 			throw new SAMException( SAMException::HELLO_FAILED );
 		}
+
+		$this->sentHello = true;
 
 		return $reply;
 	}
