@@ -47,7 +47,11 @@ class SAMReply
 	}
 
 	public function getResult():String {
-		return $this->getReplyMapValue( "RESULT" );
+		try {
+			return $this->getReplyMapValue( "RESULT" );
+		} catch ( SAMException $e ) {
+			return "";
+		}
 	}
 
 	public function getReplyMapValue( String $param ):String

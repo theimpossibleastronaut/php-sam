@@ -13,7 +13,7 @@ It's very basic as well. Requires PHP 7.2+.
 require_once( "lib/php-sam.php" );
 
 $sam = new \PHP_SAM\SAM3();
-$sam->connect();
+$sam->connect( false );
 $sam->commandSAM( "HELLO VERSION MIN=3.0 MAX=3.1 \n" );
 ```
 
