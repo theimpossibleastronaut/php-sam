@@ -6,6 +6,7 @@ class SAM3
 	public $samHost = "127.0.0.1";
 	public $samPort = 7656;
 	public $signatureType = Signatures::EdDSA_SHA512_Ed25519;
+	public $sessionId = "";
 
 	protected $samSocket = null;
 	protected $sentHello = false;
@@ -40,6 +41,18 @@ class SAM3
 	public function getSignatureType():String
 	{
 		return Signatures::getSignatureType( $this->signatureType );
+	}
+
+	public function getSocket() {
+		return $this->samSocket;
+	}
+
+	public function getSessionId():String {
+		if ( !is_null( $this->sessionId ) && !empty( $this->sessionId ) ) {
+			return $this->sessionId;
+		}
+
+		return "";
 	}
 
 	public function connect( bool $sendHello = true ):Void {
@@ -116,6 +129,7 @@ class SAM3
 
 		$reply = $this->commandSAM( "SESSION CREATE STYLE=STREAM ID=" . $id . " DESTINATION=" . $destination . " \n" );
 		if ( $reply->getResult() === \PHP_SAM\SAMReply::REPLY_TYPE_OK ) {
+			$this->sessionId = $id;
 			return $id;
 		}
 
@@ -131,4 +145,33 @@ class SAM3
 
 		return "";
 	}
+
+	public function connectSession( string $id, string $destination ):SAM3 {
+		$sam3 = new SAM3( $this->samHost, $this->samPort, $this->signatureType );
+		$sam3->connect();
+
+		if ( substr( strtolower( $destination ), -4 ) === ".i2p" ) {
+			$destination = $sam3->lookupName( $destination );
+		}
+
+		$reply = $sam3->commandSAM( "STREAM CONNECT ID=" . $id . " DESTINATION=" . $destination . " SILENT=false" );
+		if ( $reply->getResult() === \PHP_SAM\SAMReply::REPLY_TYPE_OK ) {
+			$sam3->sessionId = $id;
+		}
+
+		return $sam3;
+	}
+
+	public function acceptSession( string $id ):SAM3 {
+		$sam3 = new SAM3( $this->samHost, $this->samPort, $this->signatureType );
+		$sam3->connect();
+
+		$reply = $sam3->commandSAM( "STREAM ACCEPT ID=" . $id . " SILENT=false" );
+		if ( $reply->getResult() === \PHP_SAM\SAMReply::REPLY_TYPE_OK ) {
+			$sam3->sessionId = $id;
+		}
+
+		return $sam3;
+	}
+
 }
