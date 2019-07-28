@@ -39,7 +39,7 @@ class SAMReply
 		$this->type = $parts[ 1 ];
 
 		for ( $i = 2; $i < count( $parts ); $i++ ) {
-			$dparts = explode( "=", $parts[ $i ] );
+			$dparts = explode( "=", $parts[ $i ], 2 );
 			if ( count( $dparts ) === 2 ) {
 				$this->replyMap[ $dparts[ 0 ] ] = $dparts[ 1 ];
 			}
