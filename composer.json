@@ -1,0 +1,13 @@
+{
+    "name": "theimpossibleastronaut/php-sam",
+    "description": "Basic SAMv3 implementation for I2P in PHP",
+    "require": {
+        "php": "^7.2"
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/theimpossibleastronaut/php-sam"
+        }
+    ]
+}
