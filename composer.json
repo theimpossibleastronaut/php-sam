@@ -1,6 +1,8 @@
 {
     "name": "theimpossibleastronaut/php-sam",
     "description": "Basic SAMv3 implementation for I2P in PHP",
+    "license": "MIT",
+    "keywords": ["i2p","sockets"],
     "require": {
         "php": "^7.2"
     },
