@@ -17,4 +17,19 @@ $sam->connect( false );
 $sam->commandSAM( "HELLO VERSION MIN=3.0 MAX=3.1 \n" );
 ```
 
+You can also use composer for this.
+```
+composer require theimpossibleastronaut/php-sam
+```
+
+And then use the autoloader as followed;
+```php
+<?php
+require __DIR__ . '/vendor/autoload.php';
+
+$sam = new \PHP_SAM\SAM3();
+$sam->connect( false );
+$sam->commandSAM( "HELLO VERSION MIN=3.0 MAX=3.1 \n" );
+```
+
 In order to run the tests, enable zend.assertions in your php.ini (don't do that in production) and run php test/assert.php .
