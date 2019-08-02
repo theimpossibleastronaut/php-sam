@@ -11,5 +11,8 @@
             "type": "vcs",
             "url": "https://github.com/theimpossibleastronaut/php-sam"
         }
-    ]
+    ],
+    "autoload": {
+        "files": ["lib/php-sam.php"]
+    }
 }
