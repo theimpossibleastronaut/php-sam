@@ -1,4 +1,9 @@
+[![License](https://poser.pugx.org/theimpossibleastronaut/php-sam/license)](https://packagist.org/packages/theimpossibleastronaut/php-sam)
 [![SourceLevel](https://app.sourcelevel.io/github/theimpossibleastronaut/php-sam.svg)](https://app.sourcelevel.io/github/theimpossibleastronaut/php-sam)
+
+[![Latest Stable Version](https://poser.pugx.org/theimpossibleastronaut/php-sam/v/stable)](https://packagist.org/packages/theimpossibleastronaut/php-sam)
+[![Latest Unstable Version](https://poser.pugx.org/theimpossibleastronaut/php-sam/v/unstable)](https://packagist.org/packages/theimpossibleastronaut/php-sam)
+
 
 # php-sam
 Implementation for the SAMv3 bridge in PHP.
