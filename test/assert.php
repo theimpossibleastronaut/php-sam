@@ -21,7 +21,7 @@ require_once( dirname( __FILE__ ) . "/../lib/php-sam.php" );
 $sam = new \PHP_SAM\SAM3();
 
 assert( $sam->getSAMAddress() === "127.0.0.1:7656" );
-assert( $sam->getSignatureType() === \PHP_SAM\Signatures::getSignatureType( \PHP_SAM\Signatures::EdDSA_SHA512_Ed25519 ) );
+assert( $sam->getSignatureType() === \PHP_SAM\Signatures::getSignatureType( \PHP_SAM\Signatures::EDDSA_SHA512_ED25519 ) );
 
 $sam->connect( false );
 $reply = $sam->commandSAM( "HELLO VERSION MIN=3.0 MAX=3.1 \n" );
