@@ -5,7 +5,7 @@ class SAM3
 {
 	public $samHost = "127.0.0.1";
 	public $samPort = 7656;
-	public $signatureType = Signatures::EdDSA_SHA512_Ed25519;
+	public $signatureType = Signatures::EDDSA_SHA512_ED25519;
 	public $sessionId = "";
 
 	protected $samSocket = null;
@@ -121,16 +121,16 @@ class SAM3
 		return new SAMReply( $message );
 	}
 
-	public function createSession( String $id, String $destination = null ):String
+	public function createSession( String $sessionId, String $destination = null ):String
 	{
 		if ( empty( $destination ) ) {
 			$destination = "TRANSIENT";
 		}
 
-		$reply = $this->commandSAM( "SESSION CREATE STYLE=STREAM ID=" . $id . " DESTINATION=" . $destination . " \n" );
+		$reply = $this->commandSAM( "SESSION CREATE STYLE=STREAM ID=" . $sessionId . " DESTINATION=" . $destination . " \n" );
 		if ( $reply->getResult() === \PHP_SAM\SAMReply::REPLY_TYPE_OK ) {
-			$this->sessionId = $id;
-			return $id;
+			$this->sessionId = $sessionId;
+			return $sessionId;
 		}
 
 		return "";
@@ -146,7 +146,7 @@ class SAM3
 		return "";
 	}
 
-	public function connectSession( string $id, string $destination ):SAM3 {
+	public function connectSession( string $sessionId, string $destination ):SAM3 {
 		$sam3 = new SAM3( $this->samHost, $this->samPort, $this->signatureType );
 		$sam3->connect();
 
@@ -154,21 +154,21 @@ class SAM3
 			$destination = $sam3->lookupName( $destination );
 		}
 
-		$reply = $sam3->commandSAM( "STREAM CONNECT ID=" . $id . " DESTINATION=" . $destination . " SILENT=false" );
+		$reply = $sam3->commandSAM( "STREAM CONNECT ID=" . $sessionId . " DESTINATION=" . $destination . " SILENT=false" );
 		if ( $reply->getResult() === \PHP_SAM\SAMReply::REPLY_TYPE_OK ) {
-			$sam3->sessionId = $id;
+			$sam3->sessionId = $sessionId;
 		}
 
 		return $sam3;
 	}
 
-	public function acceptSession( string $id ):SAM3 {
+	public function acceptSession( string $sessionId ):SAM3 {
 		$sam3 = new SAM3( $this->samHost, $this->samPort, $this->signatureType );
 		$sam3->connect();
 
-		$reply = $sam3->commandSAM( "STREAM ACCEPT ID=" . $id . " SILENT=false" );
+		$reply = $sam3->commandSAM( "STREAM ACCEPT ID=" . $sessionId . " SILENT=false" );
 		if ( $reply->getResult() === \PHP_SAM\SAMReply::REPLY_TYPE_OK ) {
-			$sam3->sessionId = $id;
+			$sam3->sessionId = $sessionId;
 		}
 
 		return $sam3;
