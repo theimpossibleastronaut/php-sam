@@ -1,8 +1,9 @@
 [![License](https://poser.pugx.org/theimpossibleastronaut/php-sam/license)](https://packagist.org/packages/theimpossibleastronaut/php-sam)
 [![SourceLevel](https://app.sourcelevel.io/github/theimpossibleastronaut/php-sam.svg)](https://app.sourcelevel.io/github/theimpossibleastronaut/php-sam)
-
 [![Latest Stable Version](https://poser.pugx.org/theimpossibleastronaut/php-sam/v/stable)](https://packagist.org/packages/theimpossibleastronaut/php-sam)
 [![Latest Unstable Version](https://poser.pugx.org/theimpossibleastronaut/php-sam/v/unstable)](https://packagist.org/packages/theimpossibleastronaut/php-sam)
+[![PHP Stan](https://github.com/theimpossibleastronaut/php-sam/workflows/PHP%20Stan/badge.svg)](https://packagist.org/packages/theimpossibleastronaut/php-sam)
+[![PHP Composer](https://github.com/theimpossibleastronaut/php-sam/workflows/PHP%20Composer/badge.svg)](https://packagist.org/packages/theimpossibleastronaut/php-sam)
 
 
 # php-sam
