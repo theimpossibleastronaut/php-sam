@@ -174,4 +174,24 @@ class SAM3
 		return $sam3;
 	}
 
+	public function forwardSession( string $sessionId, int $port, string $host = null ):SAM3 {
+		$sam3 = new SAM3( $this->samHost, $this->samPort, $this->signatureType );
+		$sam3->connect();
+
+		$commandString = "STREAM FORWARD ID=" . $sessionId . " PORT=" . $port;
+		
+		if ( !is_null( $host ) ) {
+			$commandString .= " HOST=" . $host;
+		}
+		
+		$commandString .= " SILENT=false";
+		
+		$reply = $sam3->commandSAM( $commandString );
+		if ( $reply->getResult() === \PHP_SAM\SAMReply::REPLY_TYPE_OK ) {
+			$sam3->sessionId = $sessionId;
+		}
+
+		return $sam3;
+	}
+
 }
