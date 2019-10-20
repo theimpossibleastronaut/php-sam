@@ -55,7 +55,7 @@ class SAM3
 		return "";
 	}
 
-	public function connect( bool $sendHello = true ):Void {
+	public function connect( bool $writeHello = true ):Void {
 		if ( isset( $this->samSocket ) && !is_null( $this->samSocket ) ) {
 			throw new SAMException( SAMException::ALREADY_CONNECTED );
 		}
@@ -72,7 +72,7 @@ class SAM3
 			throw new SAMException( SAMException::SOCKET_CONNECT_ERROR );
 		}
 
-		if ( $sendHello === true ) {
+		if ( $writeHello === true ) {
 			$this->sendHello();
 		}
 	}
