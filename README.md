@@ -11,7 +11,7 @@ Implementation for the SAMv3 bridge in PHP.
 
 Based on the article "So you want to write a SAM library" on [geti2p.net](http://geti2p.net/en/blog/post/2019/06/23/sam-library-basics).
 
-This is a work in progress, but go ahead and give it a try.
+Most basic features are implemented. Go ahead and play with the examples.
 It's very basic as well. Requires PHP 7.2+.
 
 ```php
