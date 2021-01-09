@@ -4,7 +4,7 @@
     "license": "MIT",
     "keywords": ["i2p","sockets"],
     "require": {
-        "php": "^7.2"
+        "php": "^7.2|^8.0"
     },
     "repositories": [
         {
