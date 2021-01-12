@@ -39,5 +39,6 @@ $sam->commandSAM( "HELLO VERSION MIN=3.0 MAX=3.1 \n" );
 ```
 
 In order to run the tests, enable zend.assertions in your php.ini (don't do that in production) and run
-
-    php test/assert.php
+```sh
+php test/assert.php
+```
