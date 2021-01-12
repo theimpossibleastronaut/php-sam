@@ -9,7 +9,7 @@
 # php-sam
 Implementation for the SAMv3 bridge in PHP.
 
-Based on the article "So you want to write a SAM library" on [geti2p.net](http://geti2p.net/en/blog/post/2019/06/23/sam-library-basics).
+(Based on the article ["So you want to write a SAM library"](http://geti2p.net/en/blog/post/2019/06/23/sam-library-basics))
 
 Most basic features are implemented. Go ahead and play with the examples.
 It's very basic as well. Requires PHP 7.2+.
@@ -28,7 +28,7 @@ You can also use composer for this.
 composer require theimpossibleastronaut/php-sam
 ```
 
-And then use the autoloader as followed;
+And then use the autoloader:
 ```php
 <?php
 require __DIR__ . '/vendor/autoload.php';
@@ -38,4 +38,7 @@ $sam->connect( false );
 $sam->commandSAM( "HELLO VERSION MIN=3.0 MAX=3.1 \n" );
 ```
 
-In order to run the tests, enable zend.assertions in your php.ini (don't do that in production) and run php test/assert.php .
+In order to run the tests, enable zend.assertions in your php.ini (don't do that in production) and run
+```
+php test/assert.php
+```
