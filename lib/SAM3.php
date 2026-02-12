@@ -28,7 +28,7 @@ class SAM3
 
 	function __destruct()
 	{
-		if ( isset( $this->samSocket ) && !is_null( $this->samSocket ) ) {
+		if ( !empty( $this->samSocket ) ) {
 			@socket_close( $this->samSocket );
 		}
 	}
@@ -56,7 +56,7 @@ class SAM3
 	}
 
 	public function connect( bool $writeHello = true ):Void {
-		if ( isset( $this->samSocket ) && !is_null( $this->samSocket ) ) {
+		if ( !empty( $this->samSocket ) ) {
 			throw new SAMException( SAMException::ALREADY_CONNECTED );
 		}
 
@@ -96,7 +96,7 @@ class SAM3
 
 	public function commandSAM( $args ):SAMReply
 	{
-		if ( !isset( $this->samSocket ) || is_null( $this->samSocket ) ) {
+		if ( empty( $this->samSocket ) ) {
 			throw new SAMException( SAMException::NOT_CONNECTED );
 		}
 
